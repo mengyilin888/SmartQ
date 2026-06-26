@@ -1,0 +1,78 @@
+server:
+  port: 9900
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+file:
+  upload:
+    path: ./uploads
+    allowed-extensions: txt,md
+
+milvus:
+  host: localhost
+  port: 19530
+  username: ""
+  password: ""
+  database: default
+  timeout: 10000
+
+spring:
+  ai:
+    dashscope:
+      api-key: ${DASHSCOPE_API_KEY:}
+      chat:
+        options:
+          timeout: 180000
+      retry:
+        max-attempts: 3
+        backoff:
+          initial-interval: 2000
+          multiplier: 2
+          max-interval: 10000
+    mcp:
+      client:
+        enabled: false
+        name: tencent-mcp-server
+        version: 1.0.0
+        request-timeout: 60s
+        type: ASYNC
+        sse:
+          connections:
+            tencent-cls:
+              url: http://localhost:3000
+              sse-endpoint: /sse
+
+dashscope:
+  api:
+    key: ${DASHSCOPE_API_KEY:}
+  embedding:
+    model: text-embedding-v4
+
+document:
+  chunk:
+    max-size: 800
+    overlap: 100
+
+rag:
+  top-k: 3
+  model: "qwen3-max"
+  # 查询优化：改写 + Multi-Query 扩展
+  query-rewrite-enabled: true
+  multi-query-count: 3
+  # 召回优化：混合检索（向量 + BM25）+ RRF 融合
+  hybrid-enabled: true
+  bm25:
+    enabled: true
+  # 相似度阈值过滤：低于此分数的结果不返回
+  similarity-threshold: 0.5
+
+prometheus:
+  base-url: http://localhost:9090
+  timeout: 10
+  mock-enabled: true
+
+cls:
+  mock-enabled: true
