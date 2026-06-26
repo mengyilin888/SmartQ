@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1680" height="980" viewBox="0 0 1680 980">
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font: 700 34px "Microsoft YaHei", "Segoe UI", Arial, sans-serif; fill: #18202f; }
+      .subtitle { font: 400 18px "Microsoft YaHei", "Segoe UI", Arial, sans-serif; fill: #5c667a; }
+      .box { fill: #ffffff; stroke: #cfd7e6; stroke-width: 2; rx: 8; }
+      .box-main { fill: #ffffff; stroke: #2f6fec; stroke-width: 2.4; rx: 8; }
+      .box-tool { fill: #fffaf0; stroke: #d89c22; stroke-width: 2; rx: 8; }
+      .box-rag { fill: #f0fbf7; stroke: #1f9d72; stroke-width: 2; rx: 8; }
+      .box-llm { fill: #f6f2ff; stroke: #7a4bd9; stroke-width: 2; rx: 8; }
+      .box-sse { fill: #f0f7ff; stroke: #2387d5; stroke-width: 2; rx: 8; }
+      .label { font: 700 18px "Microsoft YaHei", "Segoe UI", Arial, sans-serif; fill: #1c2433; }
+      .small { font: 400 14px "Microsoft YaHei", "Segoe UI", Arial, sans-serif; fill: #596477; }
+      .tiny { font: 400 12px "Microsoft YaHei", "Segoe UI", Arial, sans-serif; fill: #6d7788; }
+      .arrow { stroke: #58677d; stroke-width: 2.4; fill: none; marker-end: url(#arrowHead); }
+      .arrow-blue { stroke: #2f6fec; stroke-width: 2.6; fill: none; marker-end: url(#arrowHeadBlue); }
+      .arrow-green { stroke: #1f9d72; stroke-width: 2.4; fill: none; marker-end: url(#arrowHeadGreen); }
+      .note { fill: #ffffff; stroke: #d9dfeb; stroke-width: 1.6; rx: 8; }
+      .note-text { font: 400 15px "Microsoft YaHei", "Segoe UI", Arial, sans-serif; fill: #3c4658; }
+    </style>
+    <marker id="arrowHead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#58677d"/>
+    </marker>
+    <marker id="arrowHeadBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2f6fec"/>
+    </marker>
+    <marker id="arrowHeadGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1f9d72"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1680" height="980"/>
+  <text class="title" x="70" y="66">SuperBizAgent 调用链图</text>
+  <text class="subtitle" x="70" y="98">Controller -> Service -> Agent -> Tool -> RAG -> LLM -> SSE</text>
+
+  <!-- Main chain -->
+  <rect class="box-main" x="70" y="170" width="210" height="96"/>
+  <text class="label" x="100" y="205">前端 app.js</text>
+  <text class="small" x="100" y="232">sendMessage()</text>
+  <text class="tiny" x="100" y="252">quick / stream</text>
+
+  <rect class="box-main" x="340" y="170" width="250" height="96"/>
+  <text class="label" x="370" y="205">Controller</text>
+  <text class="small" x="370" y="232">ChatController</text>
+  <text class="tiny" x="370" y="252">/api/chat 或 /api/chat_stream</text>
+
+  <rect class="box-main" x="650" y="170" width="250" height="96"/>
+  <text class="label" x="680" y="205">Service</text>
+  <text class="small" x="680" y="232">ChatService</text>
+  <text class="tiny" x="680" y="252">构建模型、提示词、工具列表</text>
+
+  <rect class="box-main" x="960" y="170" width="250" height="96"/>
+  <text class="label" x="990" y="205">Agent</text>
+  <text class="small" x="990" y="232">ReactAgent</text>
+  <text class="tiny" x="990" y="252">agent.call() / agent.stream()</text>
+
+  <rect class="box-tool" x="1270" y="170" width="300" height="96"/>
+  <text class="label" x="1300" y="205">Tool</text>
+  <text class="small" x="1300" y="232">DateTime / Docs / Metrics / Logs</text>
+  <text class="tiny" x="1300" y="252">模型按意图自动选择工具</text>
+
+  <path class="arrow-blue" d="M 280 218 L 340 218"/>
+  <path class="arrow-blue" d="M 590 218 L 650 218"/>
+  <path class="arrow-blue" d="M 900 218 L 960 218"/>
+  <path class="arrow-blue" d="M 1210 218 L 1270 218"/>
+
+  <!-- Controller details -->
+  <rect class="box" x="340" y="315" width="250" height="120"/>
+  <text class="label" x="370" y="350">入口方法</text>
+  <text class="small" x="370" y="378">chat()</text>
+  <text class="small" x="370" y="404">chatStream()</text>
+
+  <path class="arrow" d="M 465 266 L 465 315"/>
+
+  <!-- Service details -->
+  <rect class="box" x="650" y="315" width="250" height="150"/>
+  <text class="label" x="680" y="350">ChatService 关键方法</text>
+  <text class="small" x="680" y="378">buildSystemPrompt()</text>
+  <text class="small" x="680" y="404">buildMethodToolsArray()</text>
+  <text class="small" x="680" y="430">createReactAgent()</text>
+  <text class="small" x="680" y="456">executeChat()</text>
+
+  <path class="arrow" d="M 775 266 L 775 315"/>
+
+  <!-- Tool branch -->
+  <rect class="box-tool" x="1090" y="345" width="220" height="82"/>
+  <text class="label" x="1120" y="378">DateTimeTools</text>
+  <text class="small" x="1120" y="405">getCurrentDateTime()</text>
+
+  <rect class="box-tool" x="1340" y="345" width="260" height="82"/>
+  <text class="label" x="1370" y="378">InternalDocsTools</text>
+  <text class="small" x="1370" y="405">queryInternalDocs()</text>
+
+  <rect class="box-tool" x="1090" y="465" width="220" height="82"/>
+  <text class="label" x="1120" y="498">QueryMetricsTools</text>
+  <text class="small" x="1120" y="525">Prometheus 告警</text>
+
+  <rect class="box-tool" x="1340" y="465" width="260" height="82"/>
+  <text class="label" x="1370" y="498">QueryLogsTools / MCP</text>
+  <text class="small" x="1370" y="525">日志查询</text>
+
+  <path class="arrow" d="M 1420 266 L 1420 322 L 1200 322 L 1200 345"/>
+  <path class="arrow" d="M 1420 266 L 1420 345"/>
+  <path class="arrow" d="M 1420 266 L 1420 322 L 1200 322 L 1200 465"/>
+  <path class="arrow" d="M 1420 266 L 1420 465"/>
+
+  <!-- RAG branch -->
+  <rect class="box-rag" x="960" y="650" width="250" height="96"/>
+  <text class="label" x="990" y="685">RAG 检索</text>
+  <text class="small" x="990" y="712">VectorSearchService</text>
+  <text class="tiny" x="990" y="732">searchSimilarDocuments()</text>
+
+  <rect class="box-rag" x="650" y="650" width="250" height="96"/>
+  <text class="label" x="680" y="685">Embedding</text>
+  <text class="small" x="680" y="712">VectorEmbeddingService</text>
+  <text class="tiny" x="680" y="732">生成查询向量</text>
+
+  <rect class="box-rag" x="340" y="650" width="250" height="96"/>
+  <text class="label" x="370" y="685">Vector DB</text>
+  <text class="small" x="370" y="712">Milvus</text>
+  <text class="tiny" x="370" y="732">按向量相似度取 topK</text>
+
+  <path class="arrow-green" d="M 1470 427 L 1470 590 L 1085 590 L 1085 650"/>
+  <path class="arrow-green" d="M 960 698 L 900 698"/>
+  <path class="arrow-green" d="M 650 698 L 590 698"/>
+  <path class="arrow-green" d="M 465 650 L 465 610 L 1085 610 L 1085 650"/>
+
+  <!-- LLM and SSE -->
+  <rect class="box-llm" x="960" y="825" width="250" height="96"/>
+  <text class="label" x="990" y="860">LLM</text>
+  <text class="small" x="990" y="887">DashScopeChatModel</text>
+  <text class="tiny" x="990" y="907">结合用户问题、工具结果生成答案</text>
+
+  <rect class="box-sse" x="1270" y="825" width="300" height="96"/>
+  <text class="label" x="1300" y="860">SSE 返回</text>
+  <text class="small" x="1300" y="887">SseEmitter.send()</text>
+  <text class="tiny" x="1300" y="907">content / done / error</text>
+
+  <path class="arrow-blue" d="M 1085 746 L 1085 825"/>
+  <path class="arrow-blue" d="M 1210 873 L 1270 873"/>
+  <path class="arrow-blue" d="M 1420 825 L 1420 790 L 175 790 L 175 266"/>
+
+  <!-- Direct Agent to LLM when no tool is required -->
+  <path class="arrow" d="M 1085 266 L 1085 825"/>
+  <text class="tiny" x="1100" y="570">无需工具时直接进入 LLM</text>
+
+  <!-- RAG service note -->
+  <rect class="note" x="70" y="825" width="780" height="96"/>
+  <text class="note-text" x="100" y="858">说明：Agent 主链里 InternalDocsTools 主要做检索增强：</text>
+  <text class="note-text" x="100" y="884">Tool -> VectorSearchService -> Milvus -> 返回文档片段 -> Agent/LLM 组织答案。</text>
+  <text class="note-text" x="100" y="910">RagService 是另一条直接 RAG 生成链：queryStream() -> buildPrompt() -> generation.streamCall()。</text>
+</svg>
